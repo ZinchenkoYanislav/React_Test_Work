@@ -45,3 +45,16 @@ export function deleteProduct(payload) {
     });
   };
 }
+
+export const ACTION_FILTER_PRODUCT = "ACTION_FILTER_PRODUCT";
+export function filterProduct(payload) {
+  return function (dispatch) {
+    api.get(API_URL_PRODUCTS + "?name=" + payload).then((date) => {
+      console.log(date)
+      dispatch({
+        type: ACTION_FILTER_PRODUCT,
+        payload: date.data,
+      })
+    });
+  };
+}

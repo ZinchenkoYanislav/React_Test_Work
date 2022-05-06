@@ -2,6 +2,7 @@ import {
   ACTION_ADD_PRODUCT,
   ACTION_DELETE_PRODUCT,
   ACTION_FETCH_PRODUCTS,
+  ACTION_FILTER_PRODUCT,
 } from "../actions/products";
 
 const initialState = {
@@ -15,11 +16,15 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case ACTION_ADD_PRODUCT:
       return { ...state, products: [...state.products, payload.data] };
     case ACTION_DELETE_PRODUCT:
-      console.log(payload);
       return {
         ...state,
         products: state.products.filter((item) => item.id !== payload),
       };
+    case ACTION_FILTER_PRODUCT:
+      return {
+        ...state,
+        products: payload
+      }
     default:
       return state;
   }
